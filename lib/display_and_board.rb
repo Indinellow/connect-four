@@ -9,7 +9,7 @@ class Board
   end
 
   def make_empty_board
-    board = Array.new(6) {Array.new(7) {'_'}}
+    board = Array.new(6) {Array.new(7) {'__'}}
   end
 
   def display_curr_board(board = @board)
@@ -19,10 +19,11 @@ class Board
       end
       puts "\n"
     end
+    puts "0   1   2   3   4   5   6"
   end
 
   def free_space?(row,column,board = @board)
-    board[row][column] == '_'
+    board[row][column] == '__'
   end
 
   def find_first_free_space(column, board = @board)
@@ -56,7 +57,7 @@ class Board
 
   def one_column_win?(symbol,c_index,board = @board)
     board.each_with_index do |row,r_index|
-      return false if c_index >=3
+      return false if r_index >=3
 
       return true if row[c_index] == symbol && board[r_index+1][c_index] == symbol && board[r_index+2][c_index] == symbol && board[r_index+3][c_index] == symbol 
     end
@@ -96,5 +97,9 @@ class Board
 
   def game_won?(symbol)
     row_win?(symbol) || column_win?(symbol) || diagonal_up_win?(symbol) || diagonal_down_win?(symbol)
+  end
+
+  def game_draw?
+    return true if @board.none? {|row| row.include?('__')}
   end
 end

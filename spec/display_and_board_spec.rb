@@ -113,6 +113,7 @@ describe Board do
     subject(:column_board) {described_class.new}
       
     it 'returns false if no winning four in one column' do 
+      column_board.display_curr_board
       expect(column_board.one_column_win?('x',0)).to eq(false)
     end
 
