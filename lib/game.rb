@@ -44,7 +44,7 @@ class Game
   end
 
   def ask_for_column_input(player)
-    "#{player.name}, pick the column you wanna insert your symbol."
+    puts "#{player.name}, pick the column you wanna insert your symbol."
     puts "You can pick a column by entering a number from 0 to 6."
     p_choice = gets.chomp
     until p_choice.match(/\b[0-6]\b/)
